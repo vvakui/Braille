@@ -39,7 +39,8 @@ const brailleMap = {
   "101101": "x",
   "101111": "y",
   "101011": "z",
-
+  "100011": "\"",
+ 
   // Space
   "000000": " ",
 
@@ -47,11 +48,15 @@ const brailleMap = {
   "010011": ".",
   "010000": ",",
   "011001": "?",
-  "011010": "!",
+  "011010": "+",
   "010010": ":",
   "011000": ";",
   "001001": "-",
   "000010": "'",
+  "001100": "/",
+  "001000": "`",
+  "111111": "=",
+  
 
   // Special indicators
   "000001": "CAPITAL",   // capital follows
@@ -76,25 +81,12 @@ const numberMap = {
   "010110": "0",
 };
 
-function reorderBraille(cell) {
-  // testing braille system
-  return (
-    cell[0] + // 1
-    cell[3] + // 4
-    cell[1] + // 2
-    cell[4] + // 5
-    cell[2] + // 3
-    cell[5]   // 6
-  );
-}
-
 let isCapital = false;
 let isNumber = false;
 
 const result = [];
 
-for (let rawCell of cells) {
-  const cell = reorderBraille(rawCell);
+for (let cell of cells) {
   const value = brailleMap[cell];
 
   if (value === "CAPITAL") {
@@ -124,6 +116,8 @@ for (let rawCell of cells) {
 }
 
 const base64String = result.join("");
+
+//console.log(result.join("").slice(0, 950));
 
 console.log("Base64 preview:", base64String.slice(0, 950));
 

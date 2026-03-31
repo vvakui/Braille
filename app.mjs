@@ -100,8 +100,5 @@ for (let cell of cells) {
 
 const base64String = result.join("");
 
-//console.log("Base64 preview:", base64String.slice(0, 950));
+console.log("Base64 preview:", base64String.slice(0, 950));
 
-const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
-
-console.log(decodedText);

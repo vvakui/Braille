@@ -86,11 +86,14 @@ let isNumber = false;
 
 const result = [];
 
+let i = 0;
 for (let cell of cells) {
   const value = brailleMap[cell];
 
   if (value === "CAPITAL") {
     isCapital = true;
+    //console.log("CAPITAL at index " + i + ", next cell: " + cells[i + 1]);
+    i++;
     continue;
   }
 
@@ -111,16 +114,34 @@ for (let cell of cells) {
     char = char.toUpperCase();
     isCapital = false;
   }
-
+  i++;
   result.push(char);
 }
+
+// result.forEach(function(char, i) {
+//   if (!/[A-Za-z0-9]/.test(char)) {
+//     console.log("Index " + i + ": [" + char + "] — cell was: " + cells[i]);
+//   }
+// }); 
+
+// result.forEach(function(char, i) {
+//   if (i < 15) {
+//     console.log("Result " + i + ": [" + char + "]");
+//   }
+// });
+
+// console.log("Cell 11: " + cells[11]);
+// console.log("Cell 12: " + cells[12]);
+// console.log("Cell 13: " + cells[13]);
+
+// debug stuff
 
 const base64String = result.join("");
 
 //console.log(result.join("").slice(0, 950));
 
-console.log("Base64 preview:", base64String.slice(0, 950));
+//console.log("Base64 preview:", base64String.slice(0, 950));
 
-//const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
+const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
 
 //console.log(decodedText);

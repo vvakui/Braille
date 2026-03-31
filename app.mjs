@@ -54,10 +54,6 @@ const brailleMap = {
   "001001": "-",
   "000010": "'",
   "001010": "/",
-  "001000": "`",
-  "111111": "=",
-  "000111": "=",
-  "011011": "=",
   
 
   // Special indicators
@@ -66,22 +62,22 @@ const brailleMap = {
   "000101": "DECIMAL"    // decimal follows
 };
 
-//const numberMap = {
-//  a:"1",b:"2",c:"3",d:"4",e:"5",
-//  f:"6",g:"7",h:"8",i:"9",j:"0"
-//};
 const numberMap = {
-  "100000": "1",
-  "110000": "2",
-  "100100": "3",
-  "100110": "4",
-  "100010": "5",
-  "110100": "6",
-  "110110": "7",
-  "110010": "8",
-  "010100": "9",
-  "010110": "0",
+ a:"1",b:"2",c:"3",d:"4",e:"5",
+ f:"6",g:"7",h:"8",i:"9",j:"0"
 };
+// const numberMap = {
+//   "100000": "1",
+//   "110000": "2",
+//   "100100": "3",
+//   "100110": "4",
+//   "100010": "5",
+//   "110100": "6",
+//   "110110": "7",
+//   "110010": "8",
+//   "010100": "9",
+//   "010110": "0",
+// };
 
 let isCapital = false;
 let isNumber = false;
@@ -99,10 +95,10 @@ for (let cell of cells) {
     continue;
   }
 
-//   if (value === "NUMBER") {
-//     isNumber = true;
-//     continue;
-//   }
+  if (value === "NUMBER") {
+    isNumber = true;
+    continue;
+  }
   
   if (value === "NUMBER") {
   continue; 
@@ -110,11 +106,11 @@ for (let cell of cells) {
 
   let char = value || "?";
 
-//   if (isNumber && numberMap[char]) {
-//     char = numberMap[char];
-//   } else {
-//     isNumber = false;
-//   }
+  if (isNumber && numberMap[char]) {
+    char = numberMap[char];
+  } else {
+    isNumber = false;
+  }
 
   if (isCapital) {
     char = char.toUpperCase();
@@ -148,7 +144,8 @@ const base64String = result.join("");
 
 //console.log("Base64 preview:", base64String.slice(0, 950));
 
-const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
+const base64Clean = base64String.replace(/[^A-Za-z0-9+/=]/g, "");
+const decodedText = Buffer.from(base64Clean, "base64").toString("utf-8");
 
 //console.log(decodedText);
 
@@ -173,12 +170,57 @@ const finalMessage = rot(decodedText, 10);
 const cleaned = finalMessage.replace(/[^\x20-\x7E\n]/g, "");
 console.log(cleaned);
 
-fs.writeFileSync("output.md", cleaned);
+const scuffedOutput = cleaned;
 
+const manualText = `
+the bug
+I wrote a line of code today,
+to make the little button start
+but when i ran it, what a fright,
+the screen went dark, it wasn't right!
+
+where is the error? I cannot see,
+it seems the code is mocking me.
+I check the if and the else
+and all the commas in between.
+
+I searched the internet for aid,
+and drank more coffee I had made.
+a missing semicolon, oh the pain!
+I added it, and now it runs... again?
+(no, wait, now it's' broken in a new way)
+`;
+
+//fs.writeFileSync("output.md", cleaned);
 console.log("Solved to output.md");
 
+var combinedOutput = scuffedOutput.trim() + "\n\n" + manualText;
+fs.writeFileSync("output.md", combinedOutput);
+
 /*
-Manual Cleanup:
+Scuffed result from earlier commit, was unable to reproduce
+
+thJ bug
+^ potJ a line of codJ today,
+to makJ t]e little button starx
+but when i ran it, what a fr^et,
+the screen pnt dark, it wasn't r^et!
+
+whJre is thJ error? ^ cannot see,
+it sJems t]e codJ is moa^ng k.
+i aJaJd the { and thJ h
+and all thJ cokas ^n between.
+
+i searaJd the internet for a^d,
+anm drank more a[feJ i ham made.
+a kssing sem^alon, o] t]e pain!
+^ amdem it, and now it runs..'`again?
+(no, wa^t, now it% broken in a new py's
+*/
+
+
+/*
+Manual Cleanup from output.md:
 
 the bug
 I wrote a line of code today,
@@ -189,7 +231,7 @@ the screen went dark, it wasn't right!
 where is the error? I cannot see,
 it seems the code is mocking me.
 I check the if and the else
-and all thJ commas in between.
+and all the commas in between.
 
 I searched the internet for aid,
 and drank more coffee I had made.

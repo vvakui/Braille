@@ -1,21 +1,19 @@
-thJ bug
-^ potJ a line of codJ today,
-to makJ t]e little button starx
-but when i ran it, what a fr^et,
-the screen pnt dark, it wasn't r^et!
+the+g
+irote{line of codeoday,
+to makeh little button stay.
+but when i ran it, what a fri*,
+the screen went dark, it wasn't ri*!
 
-whJre is thJ error? ^ cannot see,
-it sJems t]e codJ is moa^ng k.
-i aJaJd the { and thJ h
-and all thJ cokas ^n between.
+whe is therror? iannot see,
+it sems th codes mocxng me.
+i c5x}he { and the,
+and all theommas in between.
 
-i searaJd the internet for a^d,
-anm drank more a[feJ i ham made.
-a kssing sem^alon, o] t]e pain!
-^ amdem it, and now it runs..'`again?
-(no, wa^t, now it% broken in a new py's
+i searc5}he internet for ai|
+andrank more cofee hadade.
+a missing semiolon, ohh pain!
+idt, and now it runs...;gainU\^e[RJRH]IIR[R\[
 
-Manual Cleanup:
 
 the bug
 I wrote a line of code today,
@@ -26,7 +24,7 @@ the screen went dark, it wasn't right!
 where is the error? I cannot see,
 it seems the code is mocking me.
 I check the if and the else
-and all thJ commas in between.
+and all the commas in between.
 
 I searched the internet for aid,
 and drank more coffee I had made.

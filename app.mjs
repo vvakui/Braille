@@ -11,7 +11,7 @@ console.log("Divisible by 6:", data.length % 6 === 0);
 console.log("Total cells:", cells.length);
 
 // Braille map
-const BRAILLE_MAP = {
+const brailleMap = {
   // Letters
   "100000": "a",
   "110000": "b",
@@ -58,3 +58,50 @@ const BRAILLE_MAP = {
   "001111": "NUMBER",    // number follows
   "000011": "DECIMAL"    // decimal follows
 };
+
+const numberMap = {
+  a:"1",b:"2",c:"3",d:"4",e:"5",
+  f:"6",g:"7",h:"8",i:"9",j:"0"
+};
+
+let isCapital = false;
+let isNumber = false;
+
+const result = [];
+
+for (let cell of cells) {
+  const value = brailleMap[cell];
+
+  if (value === "CAPITAL") {
+    isCapital = true;
+    continue;
+  }
+
+  if (value === "NUMBER") {
+    isNumber = true;
+    continue;
+  }
+
+  let char = value || "?";
+
+  if (isNumber && numberMap[char]) {
+    char = numberMap[char];
+  } else {
+    isNumber = false;
+  }
+
+  if (isCapital) {
+    char = char.toUpperCase();
+    isCapital = false;
+  }
+
+  result.push(char);
+}
+
+const base64String = result.join("");
+
+//console.log("Base64 preview:", base64String.slice(0, 950));
+
+const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
+
+console.log(decodedText);

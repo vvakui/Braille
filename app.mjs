@@ -148,5 +148,23 @@ const base64String = result.join("");
 
 const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
 
-console.log(decodedText);
+//console.log(decodedText);
 
+function rot(str, shift) {
+  return str.replace(/[a-z]/gi, char => {
+    const base = char === char.toUpperCase() ? 65 : 97;
+    return String.fromCharCode(
+      ((char.charCodeAt(0) - base + shift) % 26) + base
+    );
+  });
+}
+
+// for (let i = 0; i < 26; i++) {
+//   console.log("\n====================");
+//   console.log("ROT " + i);
+//   console.log("====================\n");
+//   console.log(rot(decodedText, i));
+// }
+
+const finalMessage = rot(decodedText, 10);
+console.log(finalMessage);

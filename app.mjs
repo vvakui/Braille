@@ -3,11 +3,12 @@ import fs from "node:fs"
 
 let data = fs.readFileSync("./data.txt", "utf-8");
 
-//console.log(data);
-
 const cells = data.match(/.{1,6}/g);
 
-console.log(cells.slice(0, 10));
+console.log("Length:", data.length);
+console.log("Divisible by 6:", data.length % 6 === 0);
+
+console.log("Total cells:", cells.length);
 
 // Braille map
 const BRAILLE_MAP = {

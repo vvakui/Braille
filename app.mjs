@@ -44,32 +44,57 @@ const brailleMap = {
   "000000": " ",
 
   // Punctuation
-  "010011": ",",
-  "011001": ";",
-  "010001": ":",
-  "011011": ".",
+  "010011": ".",
+  "010000": ",",
+  "011001": "?",
   "011010": "!",
-  "001011": "?",
+  "010010": ":",
+  "011000": ";",
   "001001": "-",
   "000010": "'",
 
   // Special indicators
   "000001": "CAPITAL",   // capital follows
   "001111": "NUMBER",    // number follows
-  "000011": "DECIMAL"    // decimal follows
+  "000101": "DECIMAL"    // decimal follows
 };
 
+//const numberMap = {
+//  a:"1",b:"2",c:"3",d:"4",e:"5",
+//  f:"6",g:"7",h:"8",i:"9",j:"0"
+//};
 const numberMap = {
-  a:"1",b:"2",c:"3",d:"4",e:"5",
-  f:"6",g:"7",h:"8",i:"9",j:"0"
+  "100000": "1",
+  "110000": "2",
+  "100100": "3",
+  "100110": "4",
+  "100010": "5",
+  "110100": "6",
+  "110110": "7",
+  "110010": "8",
+  "010100": "9",
+  "010110": "0",
 };
+
+function reorderBraille(cell) {
+  // testing braille system
+  return (
+    cell[0] + // 1
+    cell[3] + // 4
+    cell[1] + // 2
+    cell[4] + // 5
+    cell[2] + // 3
+    cell[5]   // 6
+  );
+}
 
 let isCapital = false;
 let isNumber = false;
 
 const result = [];
 
-for (let cell of cells) {
+for (let rawCell of cells) {
+  const cell = reorderBraille(rawCell);
   const value = brailleMap[cell];
 
   if (value === "CAPITAL") {
@@ -100,8 +125,8 @@ for (let cell of cells) {
 
 const base64String = result.join("");
 
-//console.log("Base64 preview:", base64String.slice(0, 950));
+console.log("Base64 preview:", base64String.slice(0, 950));
 
-const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
+//const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
 
-console.log(decodedText);
+//console.log(decodedText);

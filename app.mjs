@@ -53,9 +53,11 @@ const brailleMap = {
   "011000": ";",
   "001001": "-",
   "000010": "'",
-  "001100": "/",
+  "001010": "/",
   "001000": "`",
   "111111": "=",
+  "000111": "=",
+  "011011": "=",
   
 
   // Special indicators
@@ -164,7 +166,34 @@ function rot(str, shift) {
 //   console.log("ROT " + i);
 //   console.log("====================\n");
 //   console.log(rot(decodedText, i));
-// }
+// }     // ROT 10 found with this
 
 const finalMessage = rot(decodedText, 10);
-console.log(finalMessage);
+//console.log(finalMessage);
+const cleaned = finalMessage.replace(/[^\x20-\x7E\n]/g, "");
+console.log(cleaned);
+
+fs.writeFileSync("output.md", cleaned);
+
+console.log("Solved to output.md");
+
+/*
+Manual Cleanup:
+
+the bug
+I wrote a line of code today,
+to make the little button start
+but when i ran it, what a fright,
+the screen went dark, it wasn't right!
+
+where is the error? I cannot see,
+it seems the code is mocking me.
+I check the if and the else
+and all thJ commas in between.
+
+I searched the internet for aid,
+and drank more coffee I had made.
+a missing semicolon, oh the pain!
+I added it, and now it runs... again?
+(no, wait, now it's' broken in a new way)
+*/

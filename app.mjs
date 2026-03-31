@@ -97,18 +97,22 @@ for (let cell of cells) {
     continue;
   }
 
+//   if (value === "NUMBER") {
+//     isNumber = true;
+//     continue;
+//   }
+  
   if (value === "NUMBER") {
-    isNumber = true;
-    continue;
+  continue; 
   }
 
   let char = value || "?";
 
-  if (isNumber && numberMap[char]) {
-    char = numberMap[char];
-  } else {
-    isNumber = false;
-  }
+//   if (isNumber && numberMap[char]) {
+//     char = numberMap[char];
+//   } else {
+//     isNumber = false;
+//   }
 
   if (isCapital) {
     char = char.toUpperCase();
@@ -144,4 +148,5 @@ const base64String = result.join("");
 
 const decodedText = Buffer.from(base64String, "base64").toString("utf-8");
 
-//console.log(decodedText);
+console.log(decodedText);
+
